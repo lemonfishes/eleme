@@ -60,7 +60,7 @@ export default {
       cateItemsHeight: [0]// 商品列表每一个分类列表的高度
     }
   },
-  // 在父组件中获取数据，不要在这里获取数据
+  // 在父组件中获取数据， 不要在这里获取数据
   // computed: {
   //   products () {
   //     this.$http({
