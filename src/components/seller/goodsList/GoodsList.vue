@@ -51,11 +51,9 @@
 <script>
 export default {
   name: 'GoodsList',
-  // props: ['products', 'shopcartData'],
-  props: ['products'],
+  props: ['products', 'shopcartData'],
   data () {
     return {
-      //products: [],
       activeCate: 0, // 激活的分类
       cateItemsHeight: [0]// 商品列表每一个分类列表的高度
     }
@@ -73,6 +71,18 @@ export default {
   //     })
   //   }
   // },
+  // 由于products是通过axios异步查询得出，所以会晚于GoodsList组件的加载，故使用watch监听products数组
+  watch: {
+    products () {
+      this.loadGoods()
+    },
+    shopcartData: {
+      deep: true,
+      handler () {
+        this.loadGoods()
+      }
+    }
+  },
   created () {
     console.log('========created========')
   },
@@ -94,8 +104,24 @@ export default {
       this.$refs.goods.scrollTop = this.cateItemsHeight[index]
     },
     sliderList () {},
-    sub (goods) {},
-    plus (goods) {}
+    sub (goods) {
+      this.$emit('sub', goods)
+      // this.$store.commit('reduceShopCart', {sellerId: this.products.sellerId, goods})
+    },
+    plus (goods) {
+      this.$emit('plus', goods)
+      // this.$store.commit('addShopCart', {sellerId: this.products.sellerId, goods})
+    },
+    loadGoods () {
+      console.log(this.shopcartData)
+      const _this = this
+      this.products.types.forEach(pro => {
+        pro.goods.forEach(item => {
+          let cart = this.shopcartData.find(v => item.name === v.name)
+          _this.$set(item, 'count', cart ? cart.count : 0)
+        })
+      })
+    }
   }
 }
 </script>

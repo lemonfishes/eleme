@@ -4,5 +4,11 @@ export default {
 	},
 	seller (state) {
 		return state.seller
+	},
+	shopCarts (state) {
+		return state.carts
+	},
+	address (state) {
+		return state.address
 	}
 }

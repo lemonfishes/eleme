@@ -64,7 +64,28 @@ const router = new Router({
           component: () => import('@/components/seller/goodsList/GoodsList.vue')
         }
       ]
-    }
+    },
+    {
+      path: '/address',
+      name: 'addressManage',
+      component: () => import('@/components/address/addressManage.vue'),
+      children: [
+        {
+          path: '/',
+          redirect: 'list'
+        },
+        {
+          path: 'add/:name',
+          name: 'AddAddress',
+          component: () => import('@/components/address/add.vue')
+        },
+        {
+          path: 'list',
+          name: 'AddressList',
+          component: () => import('@/components/address/addressList.vue')
+        }
+      ]
+    },
   ]
 })
 

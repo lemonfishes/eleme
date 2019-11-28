@@ -43,10 +43,10 @@
     </div>
     <ul class="list">
       <li class="item">
-        <a href="">
+        <router-link to="/address">
           <i class="icon icon-blue icon-take icon-weizhi"></i>
           <span class="title">收货地址</span>
-        </a>
+        </router-link>
       </li>
       <li class="item">
         <a href="">

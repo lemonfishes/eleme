@@ -2,8 +2,8 @@
   <div class="seller">
         <Top :seller="seller"></Top>
         <!-- <GoodsList :products="products" :shopcartData="shopcartData"></GoodsList> -->
-        <GoodsList :products="products"></GoodsList>
-        <Shop-cart :shopcartData="shopcartData"></Shop-cart>
+        <GoodsList :products="products" :shopcartData="shopcartData" @sub="reduceCount" @plus="addCount"></GoodsList>
+        <Shop-cart :shopcartData="shopcartData" :id="seller.id" @sub="reduceCount" @plus="addCount"></Shop-cart>
   </div>
 </template>
 <script>
@@ -16,13 +16,18 @@ export default {
   data () {
     return {
       showCart: true,
-      products: [],
-      shopcartData: []
+      products: []
     }
   },
   computed: {
     seller () {
       return this.$store.getters.seller
+    },
+    // shopCarts () {
+    //   return this.$store.getters.carts
+    // },
+    shopcartData () {
+      return this.$store.getters.shopCarts[this.seller.id] || []
     }
   },
   components: {
@@ -42,9 +47,20 @@ export default {
       // console.log(arr)
       this.products = arr[0]
     })
+    //this.getShopCarts(this.shopCarts, this.seller.id)
   },
   methods: {
-    getGoods () {}
+    // getGoods () {},
+    // getShopCarts (shopCarts, id) {
+    //   debugger
+    //   this.shopcartData = shopCarts[id] || []
+    // }
+    reduceCount (product) {
+      this.$store.commit('reduceShopCart', {sellerId: this.seller.id, goods: product})
+    },
+    addCount (product) {
+      this.$store.commit('addShopCart', {sellerId: this.seller.id, goods: product})
+    }
   }
 }
 </script>

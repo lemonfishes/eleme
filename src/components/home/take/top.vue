@@ -42,6 +42,16 @@ export default {
       this.tags = res.data
     })
 
+    // window.addEventListener('scroll', () => {
+    //   // console.log(this.$refs.search_bar.getBoundingClientRect().top)
+    //   // 用箭头函数来设置this指向，让this指向外层vue的对象，如果用function，this就指向window
+    //   // console.log(this)
+    //   if (this.$refs.search_bar.getBoundingClientRect().top <= 0) {   // $refs获取div元素
+    //     this.searchBarFixed = true;
+    //   } else {
+    //     this.searchBarFixed = false;
+    //   }
+    // })
     window.onscroll = () => {
       // console.log(this.$refs.search_bar.getBoundingClientRect().top)
       // 用箭头函数来设置this指向，让this指向外层vue的对象，如果用function，this就指向window
@@ -54,7 +64,7 @@ export default {
     }
   },
   beforeDestroy () {
-    window.onscroll = null
+    window.onscroll = null;
   }
 }
 </script>

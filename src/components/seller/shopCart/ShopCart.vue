@@ -1,12 +1,12 @@
 <template>
-  <div class="cart">
+  <div class="cart" @enter="enter" @afterEnter="afterEnter" @leave="leave" @beforeEnter="beforeEnter" @beforeLeave="beforeLeave" @afterLeave="afterLeave" ref="slide">
     <div class="desc">
       <span class="amount">已满50元，</span>
       <span>结算减
         <span class="discount">34</span>元</span>
     </div>
-    <transition @enter="enter" @afterEnter="afterEnter" @leave="leave" @beforeEnter="beforeEnter" @beforeLeave="beforeLeave" @afterLeave="afterLeave">
-      <div class="slide" v-if="showList" ref="slide">
+    <transition >
+      <div class="slide" v-if="showList" >
         <div class="title cl">
           <div class="text">已选商品</div>
           <div class="clear">
@@ -18,7 +18,7 @@
         <ul class="goods-list">
           <li class="item cl" v-for="(s,i) in shopcartData" :key="i">
             <div class="goods">
-              <div class="name">{{s.title}}</div>
+              <div class="name">{{s.name}}</div>
               <div class="content">{{s.tis}}</div>
             </div>
             <div class="control">
@@ -67,19 +67,39 @@ export default {
   data () {
     return {
       showList: true,
-      slideHeight: null,
+      height: 240,
       box: 5
     }
   },
   computed: {
     totalMoney () {
-      return 0
+      let total = 0
+      console.log(this.shopcartData)
+      this.shopcartData.forEach(v => {
+        total += v.count * v.price + this.box
+      })
+      return total
     }
+    // slideHeight () {
+    //   return this.shopcartData.length * 135 + 153
+    // }
   },
+  // watch: {
+  //   shopcartData: {
+  //     deep: true,
+  //     handler () {
+  //       this.slideHeight = this.shopcartData.length * 230 + 153
+  //       console.log(this.slideHeight)
+  //     }
+  //   }
+  // },
   methods: {
-    sub (product) {
+    sub (product, id) {
+      this.$emit('sub', product)
+      // this.$store.commit('reduceShopCart', {id, product})
     },
     plus (product) {
+      this.$emit('plus', product)
     },
     beforeEnter (el) {
     },
@@ -87,7 +107,10 @@ export default {
       el.style.height = 0
     },
     afterEnter (el) {
-      el.style.height = this.slideHeight + 'px'
+      // 购物车高度自动响应，不需要设置高度
+      // console.log(this.slideHeight)
+      // el.style.height = this.slideHeight + 'px'
+      // el.style.height = '100%'
       el.style.transition = 'all .5s'
     },
     beforeLeave () {
@@ -107,6 +130,7 @@ export default {
   position: fixed;
   width: 100%;
   bottom: 0;
+  transition: all 0.5s ease 0s;
   .desc {
     padding: 0 0.3623rem;
     height: 0.6844rem;

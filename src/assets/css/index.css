@@ -77,3 +77,24 @@ a {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+
+.mint-cell {
+  min-height: 1.066667rem /* 80/75 */;
+  border-bottom: 1px solid #ddd;
+}
+.mint-cell-wrapper {
+  font-size: .36rem;
+  display: inherit;
+}
+.mint-field .mint-cell-title {
+  width: 2.106667rem /* 158/75 */
+}
+.mint-button--large {
+  width: 97%;
+  margin: .333333rem auto 0; /* 25/75 */
+  height: .8rem /* 60/75 */;
+  font-size: .32rem /* 24/75 */
+}
+.mintui {
+  font-size: .533333rem /* 40/75 */;
+}

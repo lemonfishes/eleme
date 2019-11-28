@@ -8,5 +8,12 @@ export default {
 		integral: 1000,
 		wallet: 10889
 	},
-	seller: {}
+	seller: {},
+	carts: {
+		1: [
+			{name: '鸡腿堡', count: 2, price: 20},
+			{name: '百事可乐', count: 1, price: 7}
+		]
+	},
+	address: []
 }
