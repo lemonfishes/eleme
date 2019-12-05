@@ -4,7 +4,11 @@ export default {
 		avatar: 'https://avatar.gitee.com/uploads/63/1423163_cc_vinci.png!avatar60?1523760854',
 		username: 'Frank',
 		phone: 15000000000,
-		coupon: ['满100减10元', '满200减30元', '全场5元'],
+		coupon: [
+			{name: '￥10', title: '品质联盟专享红包', desc: '满100减10元'},
+			{name: '￥30', title: '品质联盟专享红包', desc: '满200减30元'},
+			{name: '￥5', title: '全场同用红包', desc: '全场5元'},
+		],
 		integral: 1000,
 		wallet: 10889
 	},

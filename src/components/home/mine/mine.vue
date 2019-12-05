@@ -26,10 +26,12 @@
         <p class="text">钱包</p>
       </div>
       <div class="cell">
-        <p class="number">{{user.coupon.length}}
-          <span class="unit">个</span>
-        </p>
-        <p class="text">优惠</p>
+        <router-link to="/redPackage">
+          <p class="number">{{user.coupon.length}}
+            <span class="unit">个</span>
+          </p>
+          <p class="text">优惠</p>
+        </router-link>
       </div>
       <div class="cell">
         <p class="score">{{user.integral}}
@@ -49,10 +51,10 @@
         </router-link>
       </li>
       <li class="item">
-        <a href="">
+        <router-link to="/collect">
           <i class="icon icon-orange icon-take icon-shoucang"></i>
           <span class="title">我的收藏</span>
-        </a>
+        </router-link>
       </li>
     </ul>
     <ul class="list">

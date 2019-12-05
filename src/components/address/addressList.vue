@@ -1,34 +1,37 @@
 <template>
   <div class="address-manage">
 		<mt-header id="" title="收货地址管理">
-			<router-link to="/address" slot="left">
-				<mt-button>
-					<span class="mint-button-icon">
-					<i class="mintui mintui-back" id="back"></i></span>
-				</mt-button>
+			<router-link to="/home/mine" slot="left">
+				<mt-button icon="back"></mt-button>
 			</router-link>
 		</mt-header>
 		<ul>
-			<li v-for="(v, i) in addressList" :key="i" @click.stop="toUpdate(v)">
-				<mt-cell-swipe
-					:right="[
-						{
-							content: 'Delete',
-							style: { background: 'red', color: '#fff' },
-							handler: () => this.$messagebox('delete')
-						}
-					]">
-						<p class="addr-info user">
-							<span>{{v.name}}</span>
-							<span>{{v.phone}}</span>
-						</p>
-						<p class="addr-info addr">
-							<span>{{v.address}}</span>
-							<span class="default">{{v.default}}</span>
-						</p>
-					
-				</mt-cell-swipe>
-			</li>
+			<mt-cell-swipe
+				v-for="(v, i) in addressList" :key="i"
+				:right="[
+					{
+						content: '删除',
+						style: { background: 'red', color: '#fff' },
+						handler: () => del(v)
+					},
+					{
+						content: '修改',
+						style: { background: '#26a2ff', color: '#fff' },
+						handler: () => toUpdate(v)
+					}
+				]">
+				<li>
+				<p class="addr-info user">
+					<span>{{v.name}}</span>
+					<span>{{v.phone}}</span>
+				</p>
+				<p class="addr-info addr">
+					<span>{{v.address}}</span>
+					<span class="default">{{v.default}}</span>
+				</p>
+				</li>
+			</mt-cell-swipe>
+				
 		</ul>
 		<mt-button type="primary" size="large" @click="toAdd">新建收货地址</mt-button>
 	</div>
@@ -38,6 +41,11 @@
 	export default {
 		name: 'AddressList',
 		methods: {
+			del (obj) {
+				if (window.confirm('是否确认删除?')) {
+					this.$store.commit('deleteAddress', obj)
+				}
+			},
 			toAdd () {
 				this.$router.push({name: 'AddAddress', params: {name: ''}})
 			},

@@ -1,13 +1,9 @@
 <template>
 	<div class="add">
 		<mt-header id="" title="新增收货地址">
-			<router-link to="/address" slot="left">
-				<mt-button>
-					<span class="mint-button-icon">
-					<i class="mintui mintui-back" id="back"></i></span>
-				</mt-button>
+			<router-link to="/address/list" slot="left">
+				<mt-button icon="back"></mt-button>
 			</router-link>
-			<mt-button slot="right" class="address"><router-link to='addAddress' style="color:#fff;padding:.1rem .3rem; border-radius:15px">删除</router-link></mt-button>
 		</mt-header>
 
 		<div class="content">
@@ -90,9 +86,6 @@ export default {
 		font-size: .426667rem /* 32/75 */;
 		height: 1.2rem /* 90/75 */;
 		line-height: 1.2rem;
-	}
-	.mint-cell-wrapper {
-		font-size: .875rem /* 14/16 */ !important
 	}
 	#back{
 		font-size: .4rem;

@@ -86,6 +86,16 @@ const router = new Router({
         }
       ]
     },
+    {
+      path: '/redPackage',
+      name: 'RedPackage',
+      component: () => import('@/components/redpackage/list.vue')
+    },
+    {
+      path: '/collect',
+      name: 'CollectList',
+      component: () => import('@/components/collect/list.vue')
+    }
   ]
 })
 

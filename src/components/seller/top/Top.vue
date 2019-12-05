@@ -10,6 +10,8 @@
             <i class="icon-take icon-fanhui"></i>
           </div>
           <div class="menu">
+            <i class="icon-take icon-collect" v-show="isShow" @click="collect()"></i>
+            <i class="icon-take icon-has-collect" v-show="!isShow"></i>
             <i class="icon-take icon-pingou"></i>
             <i class="icon-take icon-gouwuche"></i>
             <i class="icon-take icon-gengduo"></i>
@@ -53,6 +55,7 @@ export default {
   props: ['seller'],
   data () {
     return {
+      isShow: true
     }
   },
   // computed: {
@@ -63,6 +66,11 @@ export default {
   methods: {
     back () {
       this.$router.back()
+    },
+    collect () {
+      // console.log(this.seller)
+      let arr = this.$store.dispatch('findSeller', this.seller)
+      console.log(arr)
     }
   }
 }
@@ -101,8 +109,23 @@ export default {
         }
         .menu {
           float: right;
+          width: 5.333333rem /* 400/75 */;
           i {
             margin-left: 0.7246rem;
+            &.icon-collect {
+              width: 77px
+              height: 77px
+              background: url("/static/img/seller/collect1.png") no-repeat;
+              display: inline-block;
+              background-size: contain;
+            }
+            &.icon-has-collect {
+              width: 77px
+              height: 77px
+              background: url("/static/img/seller/collect2.png") no-repeat;
+              display: inline-block;
+              background-size: contain;
+            }
           }
         }
       }

@@ -48,7 +48,6 @@ export default {
 
 	updateAddress (state, obj) {
 		for (let i = 0; i < state.address.length; i++) {
-			debugger
 			if (state.address[i].id === obj.id) {
 				state.address[i].name = obj.name
 				state.address[i].phone = obj.phone
@@ -56,5 +55,24 @@ export default {
 				state.address[i].default = obj.default
 			}
 		}
+	},
+
+	deleteAddress (state, obj) {
+		for (let i = 0; i < state.address.length; i++) {
+			if (state.address[i].id === obj.id) {
+				state.address.splice(i, 1)
+			}
+		}
 	}
+
+	// mutation里面不能写ajax
+	// getSeller (state, seller) {
+	// 	this.$http({
+	// 		url: api.SELLERS
+	// 	}).then(res => {
+	// 		return res.data.filter(v => {
+	// 			return v.id === seller.id
+	// 		})
+	// 	})
+	// }
 }
